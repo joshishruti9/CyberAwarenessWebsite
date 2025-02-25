@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Awareness</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1em 0;
+        }
+
+        section {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #congratulationsBanner {
+            display: none;
+            background-color: #28a745;
+            color: #fff;
+            padding: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        /* Chat Icon Styles */
+        #chatIcon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        #congratulations-banner {
+            display: none;
+            background-color: #28a745;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        /* Chat Window Styles */
+        #chatWindow {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .chat-header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 18px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .chat-body {
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            font-size: 16px;
+        }
+
+        .chat-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        // Show/Hide chat window
+        function toggleChatWindow() {
+            const chatWindow = document.getElementById("chatWindow");
+            chatWindow.style.display = chatWindow.style.display === "none" ? "block" : "none";
+        }
+
+        function takePledge() {
+            document.getElementById('congratulations-banner').style.display = 'block';
+        }
+
+        async function sendMessage() {
+            const userMessage = document.getElementById("userMessage").value;
+            const chatBody = document.getElementById("chatBody");
+
+            // Display user message
+            const userMessageElement = document.createElement("p");
+            userMessageElement.textContent = "You: " + userMessage;
+            chatBody.appendChild(userMessageElement);
+            document.getElementById("userMessage").value = "";
+
+            try {
+                const response = await fetch("http://localhost:3000/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: userMessage }),
+                });
+
+                const data = await response.json();
+
+                // Display bot response
+                const botMessageElement = document.createElement("p");
+                botMessageElement.textContent = "Bot: " + data.message;
+                chatBody.appendChild(botMessageElement);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Cyber Security Awareness</h1>
+    </header>
+    <section>
+        <h2>Stay Safe Online</h2>
+        <p>Cyber security is essential in today’s digital world. Follow these tips to protect yourself:</p>
+        <ul style="text-align: left;">
+            <li>Use strong and unique passwords.</li>
+            <li>Enable two-factor authentication (2FA).</li>
+            <li>Keep software and systems updated.</li>
+            <li>Use secure Wi-Fi connections.</li>
+            <li>Never share personal details, OTPs, or passwords over calls or emails.</li>
+            <li>Verify suspicious calls claiming to be from banks or tech support.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Recognizing Phishing Emails</h2>
+        <p>Phishing emails attempt to trick you into revealing personal information. Follow these tips to recognize them:</p>
+        <ul style="text-align: left;">
+            <li>Check the sender's email address for inconsistencies.</li>
+            <li>Be cautious of unexpected links or attachments.</li>
+            <li>Look for spelling errors and generic greetings like “Dear User.”</li>
+            <li>Beware of urgent or threatening language pressuring immediate action.</li>
+            <li>Verify suspicious emails by contacting the sender through a trusted method.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Creating a Strong Password</h2>
+        <p>A strong password helps protect your online accounts from hackers. Follow these guidelines:</p>
+        <ul style="text-align: left;">
+            <li>Use at least 12 characters.</li>
+            <li>Include a mix of uppercase and lowercase letters, numbers, and special characters.</li>
+            <li>Avoid using your name, birthdate, or common words.</li>
+            <li>Use unique passwords for different accounts.</li>
+            <li>Consider using a password manager to store your passwords securely.</li>
+            <li>Change passwords periodically and never reuse old passwords.</li>
+        </ul>
+    </section>
+    <section>
+        <button onclick="takePledge()">Take the Pledge</button>
+    </section>
+    <div id="congratulations-banner">
+        Congratulations! You are now a warrior against cyber attacks!
+    </div>
+    <footer>
+        <p>&copy; 2025 Cyber Security Awareness. All rights reserved.</p>
+    </footer>
+
+    <!-- Chat Icon -->
+    <div id="chatIcon" onclick="toggleChatWindow()">💬</div>
+
+    <!-- Chat Window -->
+    <div id="chatWindow">
+        <div class="chat-header">Cyber Security Chatbot</div>
+        <div id="chatBody" class="chat-body"></div>
+        <input id="userMessage" type="text" class="chat-input" placeholder="Ask a question..." onkeydown="if(event.key === 'Enter'){sendMessage();}">
+    </div>
+</body>
+</html>
