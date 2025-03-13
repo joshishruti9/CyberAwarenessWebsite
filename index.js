@@ -37,15 +37,15 @@ app.post("/chat", async (req, res) => {
         // Check if the message contains greeting or cybersecurity-related keywords
         const isGreeting = greetingKeywords.some(greeting => userMessage.includes(greeting));
         const isCybersecurityRelated = cybersecurityKeywords.some(keyword => userMessage.includes(keyword));
-
+        console.log(isCybersecurityRelated)
         if (isGreeting || isCybersecurityRelated) {
             // Append conversation history to provide context
             const conversationContext = req.session.history.join("\n");
             const fullPrompt = `${conversationContext}\nUser: ${userMessage}\nBot:`;
             
             // Send request to Ollama
-            const response = await axios.post("http://127.0.0.1:11434/api/generate", {
-                model: "llama2",
+            const response = await axios.post("https://ollama-shruti-joshi.koyeb.app/api/generate", {
+                model: "ollama",
                 prompt: fullPrompt,
             });
             console.log("response")

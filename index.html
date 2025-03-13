@@ -208,6 +208,27 @@
         </ul>
     </section>
     <section>
+        <h2>Enabling Multi-Factor Authentication (MFA)</h2>
+        <p>Multi-Factor Authentication (MFA) adds an extra layer of security to your accounts. Here’s how to enable it:</p>
+        <ul style="text-align: left;">
+            <li><strong>Step 1:</strong> Log in to your account and go to <strong>Security Settings</strong>.</li>
+            <li><strong>Step 2:</strong> Look for an option like <strong>Two-Factor Authentication</strong> or <strong>Multi-Factor Authentication</strong>.</li>
+            <li>
+                <strong>Step 3:</strong> Choose your preferred MFA method:
+                <ul>
+                    <li><strong>Text Message (SMS):</strong> Receive a code on your phone.</li>
+                    <li><strong>Authenticator App:</strong> Use apps like Google Authenticator or Authy.</li>
+                    <li><strong>Email:</strong> Receive a code via email.</li>
+                    <li><strong>Hardware Key:</strong> Use a physical device like a YubiKey.</li>
+                </ul>
+            </li>
+            <li><strong>Step 4:</strong> Follow the setup instructions (e.g., scan a QR code for an authenticator app).</li>
+            <li><strong>Step 5:</strong> Save backup codes in a secure place in case you lose access to your MFA method.</li>
+            <li><strong>Step 6:</strong> Test the MFA process to ensure it works.</li>
+        </ul>
+        <p><strong>Tip:</strong> Enable MFA on all critical accounts like email, banking, and social media.</p>
+    </section>
+    <section>
         <button onclick="takePledge()">Take the Pledge</button>
     </section>
     <div id="congratulations-banner">
@@ -217,14 +238,5 @@
         <p>&copy; 2025 Cyber Security Awareness. All rights reserved.</p>
     </footer>
 
-    <!-- Chat Icon -->
-    <div id="chatIcon" onclick="toggleChatWindow()">💬</div>
-
-    <!-- Chat Window -->
-    <div id="chatWindow">
-        <div class="chat-header">Cyber Security Chatbot</div>
-        <div id="chatBody" class="chat-body"></div>
-        <input id="userMessage" type="text" class="chat-input" placeholder="Ask a question..." onkeydown="if(event.key === 'Enter'){sendMessage();}">
-    </div>
 </body>
 </html>
